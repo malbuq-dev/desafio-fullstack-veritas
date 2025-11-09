@@ -12,10 +12,9 @@ import (
 var DB *gorm.DB
 
 func ConnectDatabase() {
-	err := godotenv.Load()
-
-	if err != nil {
-		log.Fatal("Error loading .env file")
+	
+	if err := godotenv.Load(); err != nil {
+		log.Println("No .env file found, skipping...")
 	}
 
 	dsn := os.Getenv("SUPABASE_DB_URL")
