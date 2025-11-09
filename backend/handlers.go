@@ -35,7 +35,7 @@ func GetTasks(c *gin.Context) {
 
 func GetTask(c *gin.Context) {
 	id := c.Param("id")
-	
+
 	var task Task
 	if err := DB.First(&task, id).Error; err != nil {
 		c.JSON(http.StatusNotFound, gin.H{"error": "Task not found"})
@@ -43,6 +43,29 @@ func GetTask(c *gin.Context) {
 	}
 
 	c.JSON(http.StatusOK, task)
+}
+
+func UpdateTask(c *gin.Context) {
+    id := c.Param("id")
+
+    var task Task
+    if err := DB.First(&task, id).Error; err != nil {
+        c.JSON(http.StatusNotFound, gin.H{"error": "Task not found"})
+        return
+    }
+
+    var input Task
+    if err := c.ShouldBindJSON(&input); err != nil {
+        c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+        return
+    }
+
+    if err := DB.Model(&task).Updates(input).Error; err != nil {
+        c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+        return
+    }
+
+    c.JSON(http.StatusOK, task)
 }
 
 

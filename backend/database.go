@@ -21,7 +21,7 @@ func ConnectDatabase() {
 	dsn := os.Getenv("SUPABASE_DB_URL")
 
 	db, err := gorm.Open(postgres.New(postgres.Config{
-		DSN: dsn,
+		DSN:                  dsn,
 		PreferSimpleProtocol: true,
 	}), &gorm.Config{})
 
