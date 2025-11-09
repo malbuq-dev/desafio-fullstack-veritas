@@ -1,0 +1,32 @@
+name: Run Go Tests
+
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - main
+      - dev-backend
+
+jobs:
+  test:
+    name: Run Go Unit Tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version-file: ./backend/go.mod 
+
+      - name: Install dependencies
+        working-directory: ./backend
+        run: go mod tidy
+
+      - name: Run tests
+        working-directory: ./backend
+        run: go test -v ./...
