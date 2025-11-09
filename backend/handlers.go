@@ -13,5 +13,10 @@ func CreateTask(c *gin.Context) {
         return
     }
 
+	if err := DB.Create(&task).Error; err != nil {
+        c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+        return
+    }
+
     c.JSON(http.StatusCreated, task)
 }
