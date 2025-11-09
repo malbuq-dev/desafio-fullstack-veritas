@@ -22,12 +22,12 @@ func respondSuccess(c *gin.Context, status int, data interface{}) {
 }
 
 func getTaskOr404(c *gin.Context, id string) *Task {
-    var task Task
-    if err := DB.First(&task, id).Error; err != nil {
-        c.JSON(http.StatusNotFound, gin.H{"error": "Task not found"})
-        return nil
-    }
-    return &task
+	var task Task
+	if err := DB.First(&task, id).Error; err != nil {
+		c.JSON(http.StatusNotFound, gin.H{"error": "Task not found"})
+		return nil
+	}
+	return &task
 }
 
 func CreateTask(c *gin.Context) {
@@ -43,7 +43,7 @@ func CreateTask(c *gin.Context) {
 		return
 	}
 
-	c.JSON(http.StatusCreated, task)
+	respondSuccess(c, http.StatusCreated, task)
 }
 
 func GetTasks(c *gin.Context) {
@@ -54,56 +54,53 @@ func GetTasks(c *gin.Context) {
 		return
 	}
 
-	c.JSON(http.StatusOK, tasks)
+	respondSuccess(c, http.StatusOK, tasks)
 }
 
 func GetTask(c *gin.Context) {
 	id := c.Param("id")
 
 	task := getTaskOr404(c, id)
-    if task == nil {
-        return
-    }
+	if task == nil {
+		return
+	}
 
 	respondSuccess(c, http.StatusOK, task)
 }
 
 func UpdateTask(c *gin.Context) {
-    id := c.Param("id")
+	id := c.Param("id")
 
-    task := getTaskOr404(c, id)
-    if task == nil {
-        return
-    }
+	task := getTaskOr404(c, id)
+	if task == nil {
+		return
+	}
 
-    var input Task
-    if err := c.ShouldBindJSON(&input); err != nil {
-        c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-        return
-    }
+	var input Task
+	if err := c.ShouldBindJSON(&input); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
 
-    if err := DB.Model(&task).Updates(input).Error; err != nil {
-        respondError(c, http.StatusInternalServerError, err, "Internal server error")
-        return
-    }
+	if err := DB.Model(&task).Updates(input).Error; err != nil {
+		respondError(c, http.StatusInternalServerError, err, "Internal server error")
+		return
+	}
 
-    respondSuccess(c, http.StatusOK, task)
+	respondSuccess(c, http.StatusOK, task)
 }
 
 func DeleteTask(c *gin.Context) {
-    id := c.Param("id")
-    task := getTaskOr404(c, id)
-    if task == nil {
-        return
-    }
+	id := c.Param("id")
+	task := getTaskOr404(c, id)
+	if task == nil {
+		return
+	}
 
-    if err := DB.Delete(task).Error; err != nil {
-        c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
-        return
-    }
+	if err := DB.Delete(task).Error; err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		return
+	}
 
-    c.JSON(http.StatusOK, gin.H{"message": "Task deleted successfully"})
+	c.JSON(http.StatusOK, gin.H{"message": "Task deleted successfully"})
 }
-
-
-
