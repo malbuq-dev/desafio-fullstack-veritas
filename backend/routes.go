@@ -8,6 +8,7 @@ func SetupRouter() *gin.Engine {
 	taskRoutes := router.Group("/tasks")
 	{
 		taskRoutes.POST("/", CreateTask)
+		taskRoutes.GET("/", GetTasks)
 	}
 
 	return router
