@@ -12,7 +12,7 @@ const (
 
 type Task struct {
     gorm.Model
-    Title       string     `json:"title"`
-    Description string     `json:"description"`
-    Status      TaskStatus `json:"status" gorm:"type:varchar(20);default:'pending'"`
+    Title       string     `json:"title" binding:"required"`
+    Description string     `json:"description" binding:"max=500"`
+    Status      TaskStatus `json:"status" gorm:"type:varchar(20); default:'pending'" binding:"required,oneof=pending in_progress completed"`
 }
