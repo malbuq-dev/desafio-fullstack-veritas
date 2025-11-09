@@ -16,6 +16,9 @@ func main() {
         port = "8080"
     }
 
+	ConnectDatabase()
+    DB.AutoMigrate(&Task{})
+
     router := SetupRouter()
     log.Printf("Running on http://localhost:%s", port)
     router.Run(fmt.Sprintf(":%s", port))
