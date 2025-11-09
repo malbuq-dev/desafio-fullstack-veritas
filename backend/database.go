@@ -1,30 +1,30 @@
 package main
 
 import (
-    "log"
-    "os"
+	"log"
+	"os"
 
-    "github.com/joho/godotenv"
-    "gorm.io/driver/postgres"
-    "gorm.io/gorm"
+	"github.com/joho/godotenv"
+	"gorm.io/driver/postgres"
+	"gorm.io/gorm"
 )
 
 var DB *gorm.DB
 
 func ConnectDatabase() {
-    err := godotenv.Load()
-	
-    if err != nil {
-        log.Fatal("Error loading .env file")
-    }
+	err := godotenv.Load()
 
-    dsn := os.Getenv("SUPABASE_DB_URL")
+	if err != nil {
+		log.Fatal("Error loading .env file")
+	}
 
-    db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
-    if err != nil {
-        log.Fatal("Failed to connect to Supabase:", err)
-    }
+	dsn := os.Getenv("SUPABASE_DB_URL")
 
-    DB = db
-    log.Println("Connected to Supabase successfully!")
+	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
+	if err != nil {
+		log.Fatal("Failed to connect to Supabase:", err)
+	}
+
+	DB = db
+	log.Println("Connected to Supabase successfully!")
 }

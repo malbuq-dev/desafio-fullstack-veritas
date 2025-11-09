@@ -1,25 +1,26 @@
 package main
-import (
-    "fmt"
-    "log"
-    "os"
 
-    "github.com/joho/godotenv"
+import (
+	"fmt"
+	"log"
+	"os"
+
+	"github.com/joho/godotenv"
 )
 
 func main() {
-    _ = godotenv.Load()
+	_ = godotenv.Load()
 
-    port := os.Getenv("PORT")
+	port := os.Getenv("PORT")
 
-    if port == "" { //Edge case pra rodar localmente
-        port = "8080"
-    }
+	if port == "" { //Edge case pra rodar localmente
+		port = "8080"
+	}
 
 	ConnectDatabase()
-    DB.AutoMigrate(&Task{})
+	DB.AutoMigrate(&Task{})
 
-    router := SetupRouter()
-    log.Printf("Running on http://localhost:%s", port)
-    router.Run(fmt.Sprintf(":%s", port))
+	router := SetupRouter()
+	log.Printf("Running on http://localhost:%s", port)
+	router.Run(fmt.Sprintf(":%s", port))
 }
