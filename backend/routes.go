@@ -19,6 +19,7 @@ func SetupRouter() *gin.Engine {
 	config := cors.Config{
 		AllowOrigins: []string{
 			os.Getenv("FRONT_END_URL_DEV"), 
+			os.Getenv("FRONT_END_URL_PROD"), 
 		},
 		AllowMethods: []string{"GET", "POST", "PUT", "DELETE", "OPTIONS"},
 		AllowHeaders: []string{"Origin", "Content-Type", "Accept"},

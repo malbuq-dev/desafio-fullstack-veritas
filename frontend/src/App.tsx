@@ -1,4 +1,3 @@
-import React from "react";
 import KanbanBoard from "./features/tasks/components/KanbanBoard";
 import { useTasksViewModel } from "./features/tasks/hooks/useTasksViewModel";
 
