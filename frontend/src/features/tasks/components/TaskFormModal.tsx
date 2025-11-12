@@ -38,32 +38,32 @@ export default function TaskFormModal({
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black/40 z-50">
-      <div className="bg-white rounded-lg shadow-lg w-full max-w-md p-6">
+      <div className="bg-primary text-textPrimary rounded-lg shadow-lg w-full max-w-md p-6">
         <h2 className="text-lg font-semibold mb-4">
-          {isEdit ? "Edit Task" : "Create New Task"}
+          {isEdit ? "Editar Tarefa" : "Nova Tarefa"}
         </h2>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              Title
+            <label className="block text-sm font-medium mb-1 text-textSecondary">
+              Título
             </label>
             <input
               type="text"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
-              className="w-full border rounded-md px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
-              placeholder="Enter task title"
+              className="w-full rounded-md px-3 py-2 focus:ring-2 focus:ring-accent focus:outline-none bg-bg text-textPrimary"
+              placeholder="Título da tarefa"
               required
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              Description
+            <label className="block text-sm font-medium mb-1 text-textSecondary">
+              Descrição
             </label>
             <textarea
               value={description}
               onChange={(e) => setDescription(e.target.value)}
-              className="w-full border rounded-md px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+              className="w-full rounded-md px-3 py-2 focus:ring-2 focus:ring-accent focus:outline-none bg-bg text-textPrimary"
               placeholder="Optional description"
             />
           </div>
@@ -71,15 +71,15 @@ export default function TaskFormModal({
             <button
               type="button"
               onClick={onClose}
-              className="px-3 py-2 bg-gray-200 rounded-md hover:bg-gray-300"
+              className="px-3 py-2 bg-second text-bg rounded-md hover:opacity-90"
             >
-              Cancel
+              Cancelar
             </button>
             <button
               type="submit"
-              className="px-3 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
+              className="px-3 py-2 bg-accent text-bg rounded-md hover:opacity-90"
             >
-              {isEdit ? "Save" : "Create"}
+              {isEdit ? "Salvar" : "Criar"}
             </button>
           </div>
         </form>

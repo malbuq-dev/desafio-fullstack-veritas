@@ -42,16 +42,16 @@ export default function TaskCard({ task, onDelete, onUpdate }: TaskCardProps) {
         style={style}
         {...listeners}
         {...attributes}
-        className="bg-gray-50 border border-gray-200 rounded-xl p-3 shadow-sm hover:shadow-md cursor-grab relative"
+        className="bg-bg rounded-xl p-3 shadow-sm hover:shadow-md cursor-grab relative text-textPrimary"
       >
         <div className="flex justify-between items-start">
-          <h3 className="font-medium text-gray-800">{task.title}</h3>
+          <h3 className="font-medium">{task.title}</h3>
           <div className="flex space-x-2">
             <button
               type="button"
               onPointerDown={(e) => e.stopPropagation()}
               onClick={handleEditClick}
-              className="text-gray-400 hover:text-blue-500 transition"
+              className="text-second hover:text-accent transition"
               aria-label="Edit task"
             >
               <Edit3 size={16} />
@@ -61,7 +61,7 @@ export default function TaskCard({ task, onDelete, onUpdate }: TaskCardProps) {
               type="button"
               onPointerDown={(e) => e.stopPropagation()}
               onClick={handleDeleteClick}
-              className="text-gray-400 hover:text-red-500 transition"
+              className="text-second hover:text-accent transition"
               aria-label="Delete task"
             >
               <Trash2 size={16} />
@@ -70,7 +70,7 @@ export default function TaskCard({ task, onDelete, onUpdate }: TaskCardProps) {
         </div>
 
         {task.description && (
-          <p className="text-gray-500 text-sm mt-1">{task.description}</p>
+          <p className="text-textSecondary text-sm mt-1">{task.description}</p>
         )}
       </div>
 

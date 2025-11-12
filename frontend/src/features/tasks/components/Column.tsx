@@ -33,12 +33,12 @@ export default function Column({
   });
 
   return (
-    <div className="bg-gray-50 rounded-lg shadow p-4 flex-1 flex flex-col">
-      <div className="flex justify-between items-center mb-3">
+    <div className="bg-primary rounded-lg shadow p-4 flex-1 flex flex-col">
+      <div className="flex justify-between items-center mb-3 text-textPrimary">
         <h2 className="font-semibold text-lg">{title}</h2>
         <button
           onClick={() => setIsModalOpen(true)}
-          className="px-2 py-1 text-sm bg-blue-500 text-white rounded-md hover:bg-blue-600"
+          className="px-2 py-1 text-sm bg-accent text-bg rounded-md hover:opacity-90"
         >
           +
         </button>
@@ -47,7 +47,7 @@ export default function Column({
       <div
         ref={setNodeRef}
         className={`space-y-2 min-h-[200px] rounded-md border border-dashed p-1 transition-colors
-          ${isOver ? "bg-blue-50 border-blue-400" : "border-transparent"}`}
+          ${isOver ? "bg-second/10 border-second" : "border-transparent"}`}
       >
         {tasks.map((task) => (
             <TaskCard

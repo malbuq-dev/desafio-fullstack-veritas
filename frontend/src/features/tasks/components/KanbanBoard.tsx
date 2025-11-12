@@ -11,11 +11,10 @@ interface KanbanBoardProps {
   isLoading?: boolean;
 }
 
-
 const STATUS_LABELS: Record<TaskStatus, string> = {
-  pending: "Pending",
-  in_progress: "In Progress",
-  completed: "Completed",
+  pending: "A fazer",
+  in_progress: "Em Progresso",
+  completed: "Concluídas",
 };
 
 export default function KanbanBoard({
@@ -45,7 +44,7 @@ export default function KanbanBoard({
 
   if (isLoading) {
     return (
-      <div className="flex justify-center items-center h-[60vh] text-gray-400">
+      <div className="flex justify-center items-center h-[60vh] text-second">
         Loading tasks...
       </div>
     );
@@ -53,7 +52,7 @@ export default function KanbanBoard({
 
   return (
     <DndContext onDragEnd={handleDragEnd}>
-      <div className="grid grid-cols-3 gap-6 p-6 bg-gray-100 min-h-[80vh]">
+      <div className="grid grid-cols-3 gap-6 p-6 bg-bg min-h-[80vh]">
         {Object.entries(groupedTasks).map(([status, tasks]) => (
         <Column
           key={status}

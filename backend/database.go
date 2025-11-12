@@ -17,7 +17,7 @@ func ConnectDatabase() {
 		log.Println("No .env file found, skipping...")
 	}
 
-	dsn := os.Getenv("SUPABASE_DB_URL")
+	dsn := os.Getenv("DB_URL")
 
 	db, err := gorm.Open(postgres.New(postgres.Config{
 		DSN:                  dsn,
@@ -29,5 +29,5 @@ func ConnectDatabase() {
 	}
 
 	DB = db
-	log.Println("Connected to Supabase successfully!")
+	log.Println("Connected to Database successfully!")
 }
