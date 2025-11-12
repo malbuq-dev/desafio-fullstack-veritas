@@ -5,6 +5,10 @@ Aplicação fullstack composta por:
 - **Backend** em Go (Gin) expondo uma API REST para gerenciamento de tarefas.
 - **Frontend** em React + Vite, consumindo essa API e exibindo um board Kanban com drag & drop.
 
+**AVISO**: Pelo fato do meu plano no render ser o free, a aplicação tem um overhead de cerca de 1 minuto pra começar a rodar porque o Render deixa ela offline após um certo tempo de inatividade.
+
+[App Deploy (Render)](https://desafio-fullstack-veritas-frontend.onrender.com)  
+[Backend API (Render)](https://desafio-fullstack-veritas-backend.onrender.com)
 ---
 
 ## Fluxo de uso da aplicação (User Flow)
