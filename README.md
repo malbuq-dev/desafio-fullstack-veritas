@@ -67,7 +67,7 @@ Principais rotas:
 
 ---
 
-## 💻 Como rodar o frontend
+## Como rodar o frontend
 
 ### 1. Pré-requisitos
 
@@ -104,7 +104,7 @@ http://localhost:5173
 
 ---
 
-## ⚙️ Decisões técnicas
+## Decisões técnicas
 
 ### Gin + Clean-ish structure
 
